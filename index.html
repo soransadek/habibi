@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0">
+  <title>Habibi DONER - Chicken Grill | Good Food Good Mood</title>
+  <meta name="description"
+    content="Welkom bij Habibi DONER - Chicken Grill. Geniet van onze heerlijke broodjes, durum, kapsalons, gegrilde kip, schotels, soepen en dranken. 100% Halal. Afhalen en ter plaatse eten.">
+  <meta name="theme-color" content="#0a0a0c">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="assets/css/style.css">
+</head>
+
+<body>
+
+  <!-- ==========================================
+       TOP ALLERGEN & ANNOUNCEMENT BAR
+       ========================================== -->
+  <div class="top-notice-bar" role="alert">
+    <div class="notice-inner">
+      <span class="notice-icon">⚠️</span>
+      <span><strong>Allergenen & Dieetwensen:</strong> Vraag altijd aan ons keukenpersoneel naar allergeneninformatie
+        over onze gerechten!</span>
+      <button class="notice-btn allergen-trigger-btn" type="button">Meer info</button>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SITE HEADER & NAVIGATION
+       ========================================== -->
+  <header class="site-header">
+    <div class="navbar">
+      <!-- Brand / Logo -->
+      <a href="#home" class="brand-link" aria-label="Habibi DONER Home">
+        <img src="assets/images/logo.png" alt="Habibi DONER - Chicken Grill Logo" class="brand-logo-img">
+        <div class="brand-text">
+          <h1>Habibi DONER</h1>
+          <span>Chicken Grill</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav aria-label="Hoofdnavigatie">
+        <ul class="nav-links">
+          <li><a href="#specialiteiten" class="nav-link">Specialiteiten</a></li>
+          <li><a href="#menu" class="nav-link">Menukaart</a></li>
+          <li><a href="#contact" class="nav-link">Openingstijden & Contact</a></li>
+          <li><a href="#" class="nav-link allergen-trigger-btn">Allergenen</a></li>
+        </ul>
+      </nav>
+
+      <!-- Nav Actions -->
+      <div class="nav-actions">
+        <a href="tel:0644983884" class="btn-gold dyn-phone-link" title="Bel restaurant">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          <span class="dyn-phone">06 4498 3884</span>
+        </a>
+
+        <!-- Admin Shortcut Link -->
+        <a href="admin.html" class="btn-admin-link" title="Beheerder / Admin portaal">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="3"></circle>
+            <path
+              d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z">
+            </path>
+          </svg>
+          Beheerder
+        </a>
+
+        <!-- Mobile Hamburger Button -->
+        <button class="hamburger-btn" id="mobileMenuBtn" aria-label="Menu openen" aria-expanded="false">
+          <span class="hamburger-line line-1"></span>
+          <span class="hamburger-line line-2"></span>
+          <span class="hamburger-line line-3"></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Dropdown Menu -->
+    <div class="mobile-dropdown" id="mobileDropdown">
+      <ul class="mobile-nav-list">
+        <li class="mobile-nav-item">
+          <a href="#specialiteiten">
+            <span>⭐ Onze Specialiteiten</span>
+            <span>→</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#menu">
+            <span>📖 Volledige Menukaart</span>
+            <span>→</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#cat-broodjes">
+            <span>🥪 Broodjes & Durum</span>
+            <span>→</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#cat-kapsalon">
+            <span>🍟 Kapsalons</span>
+            <span>→</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#cat-kip">
+            <span>🍗 Gegrilde Kip</span>
+            <span>→</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#contact">
+            <span>🕒 Openingstijden & Contact</span>
+            <span>→</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="#" class="allergen-trigger-btn">
+            <span>⚠️ Allergeneninformatie</span>
+            <span>→</span>
+          </a>
+        </li>
+        <li class="mobile-nav-item">
+          <a href="admin.html">
+            <span>⚙️ Beheerder / Admin Login</span>
+            <span>→</span>
+          </a>
+        </li>
+      </ul>
+      <div class="mobile-quick-actions">
+        <a href="tel:0644983884" class="btn-gold" style="width: 100%; justify-content: center;">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path
+              d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+          </svg>
+          Direct Bellen (<span class="dyn-phone">06 4498 3884</span>)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       HERO SECTION (LUXURY 2-COLUMN SHOWCASE)
+       ========================================== -->
+  <section class="hero-section" id="home">
+    <div class="hero-glow"></div>
+    <div class="hero-container">
+
+      <!-- Left Column: Branding, Story & CTAs -->
+      <div class="hero-brand-col">
+        <div class="hero-top-badge">
+          <span>✨ 100% Halal Gecertificeerd • Dagelijks Vers van het Spit</span>
+        </div>
+
+        <div class="hero-logo-row">
+          <img src="assets/images/logo.png" alt="Habibi DONER - Chicken Grill" class="hero-logo">
+          <div class="hero-title-group">
+            <h1>Habibi DONER</h1>
+            <span class="hero-tagline-grill">CHICKEN GRILL</span>
+          </div>
+          <img src="assets/images/halal-badge.jpg" alt="100% Halal Certificering" class="halal-badge-floating"
+            title="100% Halal">
+        </div>
+
+        <p class="hero-slogan-lead dyn-slogan">Good Food Good Mood</p>
+
+        <p class="hero-description">
+          Dé specialist in malse, vers gegrilde kip van het spit, authentieke kip- en yaprak DONER, rijkgevulde
+          kapsalons en vers Libanees brood. Bereid met passie volgens traditioneel recept.
+        </p>
+
+        <!-- Services & Highlights -->
+        <div class="hero-badges">
+          <div class="service-pill">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+              <line x1="3" y1="6" x2="21" y2="6"></line>
+              <path d="M16 10a4 4 0 0 1-8 0"></path>
+            </svg>
+            <strong>Afhalen</strong>
+          </div>
+          <div class="service-pill">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 18v3M20 18v3M4 10h16M3 14h18M6 6h12v4H6z"></path>
+            </svg>
+            <strong>Ter plaatse eten</strong>
+          </div>
+          <div class="service-pill">
+            <span style="color: var(--gold-light);">🍗 Malse Gegrilde Kip</span>
+          </div>
+        </div>
+
+        <!-- Hero Actions -->
+        <div class="hero-cta-group">
+          <a href="#menu" class="btn-gold">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6" />
+            </svg>
+            Bekijk Menukaart
+          </a>
+          <a href="tel:0644983884" class="btn-outline-gold dyn-phone-link">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path
+                d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z" />
+            </svg>
+            Bel <span class="dyn-phone">06 4498 3884</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Right Column: Chef's Special Feature Showcase -->
+      <div class="hero-feature-card">
+        <span class="hero-feature-tag">👑 Huis Specialiteit</span>
+        <div class="hero-feature-img-wrap">
+          <img src="assets/images/spotlight-kip.jpg" alt="Hele Gegrilde Kip Special" class="hero-feature-img">
+        </div>
+        <div class="hero-feature-details">
+          <h3>Hele Gegrilde Kip Compleet</h3>
+          <p>Mals en sappig van de grill, geserveerd met geurige rijst, verse knapperige friet, salade en saus naar
+            keuze.</p>
+        </div>
+        <div class="hero-feature-footer">
+          <div>
+            <span style="font-size: 0.78rem; color: var(--text-muted); text-transform: uppercase;">Compleet Menu</span>
+            <div class="hero-feature-price">€ 20,00</div>
+          </div>
+          <button class="btn-gold spotlight-order-btn" data-add="gk3" style="padding: 10px 20px;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <line x1="5" y1="12" x2="19" y2="12"></line>
+            </svg>
+            + Bestel Direct
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ==========================================
+       PROMOTION / RECLAME & ACTIE BANNER
+       ========================================== -->
+  <section class="promo-banner-section" id="promoBannerSection">
+    <div class="promo-card promo-style-gold" id="promoCard">
+      <button class="promo-close-btn" id="closePromoBannerBtn" aria-label="Sluit actiebanner">&times;</button>
+      <div class="promo-content">
+        <span class="promo-badge" id="promoBadge">🔥 ACTIE VAN DE WEEK</span>
+        <h2 class="promo-title" id="promoTitle">Hele Gegrilde Kip Menu met Rijst, Friet & Frisdrank!</h2>
+        <p class="promo-desc" id="promoDesc">Geniet van onze heerlijke, malse kip vers van de grill geserveerd met
+          rijst, friet, salade en saus naar keuze. 100% Halal!</p>
+        <span class="promo-validity" id="promoValidity">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10"></circle>
+            <polyline points="12 6 12 12 16 14"></polyline>
+          </svg>
+          <span id="promoValidityText">Geldig bij afhalen & ter plaatse eten</span>
+        </span>
+      </div>
+      <div class="promo-action-box">
+        <div class="promo-pricing" id="promoPricingBox">
+          <span class="promo-price-old" id="promoPriceOld">€ 22,50</span>
+          <span class="promo-price-new" id="promoPriceNew">€ 18,50</span>
+        </div>
+        <button class="promo-btn-cta" id="btnClaimPromo">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+            <path
+              d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+          </svg>
+          <span id="promoCtaText">Direct Bestellen via WhatsApp</span>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       POPULAIRE SPECIALITEITEN (BESTSELLERS SHOWCASE)
+       ========================================== -->
+  <section class="specialties-section" id="specialiteiten">
+    <div class="section-header">
+      <span class="section-subtitle-tag">Ambachtelijk Bereid</span>
+      <h2 class="section-title">Onze Meest Geliefde Specialiteiten</h2>
+    </div>
+
+    <div class="specialties-grid">
+      <!-- 1. Hele Gegrilde Kip -->
+      <div class="specialty-card">
+        <div class="specialty-img-wrap">
+          <img src="assets/images/spotlight-kapsalon.jpg" alt="Hele Gegrilde Kip" class="specialty-img" loading="lazy">
+          <span class="specialty-badge">🔥 Huisfavoriet</span>
+        </div>
+        <div class="specialty-info">
+          <div>
+            <h4>Hele Gegrilde Kip</h4>
+            <p>Goudbruin en sappig gegrild aan het spit met onze huisgemaakte kruiden.</p>
+          </div>
+          <div class="specialty-footer">
+            <span class="specialty-price">€ 15,00</span>
+            <button class="btn-add-item spotlight-order-btn" data-add="gk1">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Bestel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2. Kapsalon DONER -->
+      <div class="specialty-card">
+        <div class="specialty-img-wrap">
+          <img src="assets/images/spotlight-kip.jpg" alt="Kapsalon DONER" class="specialty-img" loading="lazy">
+          <span class="specialty-badge">⭐ Meest Besteld</span>
+        </div>
+        <div class="specialty-info">
+          <div>
+            <h4>Kapsalon Kip DONER</h4>
+            <p>Knapperige friet bedekt met malse DONER, gesmolten kaas, knoflooksaus & verse salade.</p>
+          </div>
+          <div class="specialty-footer">
+            <span class="specialty-price">€ 8,00</span>
+            <button class="btn-add-item spotlight-order-btn" data-add="k1">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Bestel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 3. Broodje Kip DONER -->
+      <div class="specialty-card">
+        <div class="specialty-img-wrap">
+          <img src="assets/images/spotlight-broodje.jpg" alt="Broodje Kip DONER" class="specialty-img" loading="lazy">
+          <span class="specialty-badge">🥪 Klassieker</span>
+        </div>
+        <div class="specialty-info">
+          <div>
+            <h4>Broodje Kip DONER</h4>
+            <p>Krokant geroosterd broodje rijk gevuld met malse kip DONER, salade en saus naar keuze.</p>
+          </div>
+          <div class="specialty-footer">
+            <span class="specialty-price">€ 7,00</span>
+            <button class="btn-add-item spotlight-order-btn" data-add="b1">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Bestel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 4. Durum Kip DONER -->
+      <div class="specialty-card">
+        <div class="specialty-img-wrap">
+          <img src="assets/images/spotlight-durum.jpg" alt="Durum Kip DONER" class="specialty-img" loading="lazy">
+          <span class="specialty-badge">🌯 Populair</span>
+        </div>
+        <div class="specialty-info">
+          <div>
+            <h4>Durum Kip DONER</h4>
+            <p>Vers opgerolde durum wrap gevuld met gekruid vlees, verse sla, tomaat, ui en knoflooksaus.</p>
+          </div>
+          <div class="specialty-footer">
+            <span class="specialty-price">€ 8,00</span>
+            <button class="btn-add-item spotlight-order-btn" data-add="d8">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Bestel
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- 5. Turkse Pizza -->
+      <div class="specialty-card">
+        <div class="specialty-img-wrap">
+          <img src="assets/images/spotlight-pizza.jpg" alt="Turkse Pizza Kip DONER" class="specialty-img"
+            loading="lazy">
+          <span class="specialty-badge">🍕 Vers uit de Oven</span>
+        </div>
+        <div class="specialty-info">
+          <div>
+            <h4>Turkse Pizza Kip DONER</h4>
+            <p>Krokante lahmacun bodem belegd met gekruid gehakt, opgerold met malse DONER, salade & saus.</p>
+          </div>
+          <div class="specialty-footer">
+            <span class="specialty-price">€ 8,50</span>
+            <button class="btn-add-item spotlight-order-btn" data-add="tp3">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <line x1="12" y1="5" x2="12" y2="19"></line>
+                <line x1="5" y1="12" x2="19" y2="12"></line>
+              </svg>
+              Bestel
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==========================================
+       STICKY CONTROLS: SEARCH & CATEGORY PILLS
+       ========================================== -->
+  <div class="menu-controls-wrapper" id="menu">
+    <div class="controls-container">
+      <div class="search-and-stats">
+        <div class="search-box">
+          <svg class="search-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+            stroke-width="2">
+            <circle cx="11" cy="11" r="8"></circle>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+          </svg>
+          <input type="text" id="menuSearchInput" class="search-input"
+            placeholder="Zoek op gerecht (bijv. kip, yaprak, kapsalon, falafel)..." aria-label="Zoek gerechten">
+        </div>
+
+        <button class="allergen-quick-chip allergen-trigger-btn" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+            <line x1="12" y1="9" x2="12" y2="13" />
+            <line x1="12" y1="17" x2="12.01" y2="17" />
+          </svg>
+          <span>Allergenen info</span>
+        </button>
+      </div>
+
+      <!-- Categories Pills & Dropdown on Mobile -->
+      <div class="category-mobile-select-wrap">
+        <label for="categoryMobileSelect" class="sr-only">Kies categorie</label>
+        <div class="category-select-custom">
+          <svg class="cat-select-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+          <select id="categoryMobileSelect" class="category-mobile-select" aria-label="Kies categorie">
+            <!-- Dynamically populated -->
+          </select>
+          <svg class="cat-select-arrow" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+            <polyline points="6 9 12 15 18 9"></polyline>
+          </svg>
+        </div>
+      </div>
+
+      <!-- Categories Pills (Swipable) -->
+      <div class="category-pills-bar" id="categoryPillsContainer">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       DYNAMIC MENU CONTENT
+       ========================================== -->
+  <main class="menu-main-content" id="menuContainer">
+    <!-- Populated by main.js with items from MenuStore -->
+  </main>
+
+  <!-- ==========================================
+       FLOATING CART BUTTON
+       ========================================== -->
+  <button class="cart-floating-btn" id="cartFloatingBtn" aria-label="Winkelmandje bekijken">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+      <path d="M6 2L3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"></path>
+      <line x1="3" y1="6" x2="21" y2="6"></line>
+      <path d="M16 10a4 4 0 0 1-8 0"></path>
+    </svg>
+    <span>Mijn Bestelling</span>
+    <span class="cart-badge-count cart-count-badge">0</span>
+  </button>
+
+  <!-- ==========================================
+       CART / ORDER DRAWER MODAL
+       ========================================== -->
+  <div class="cart-drawer-overlay" id="cartDrawerOverlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Winkelmandje">
+    <div class="cart-drawer-header">
+      <h3>Uw Bestelling</h3>
+      <button class="btn-close-drawer" id="closeCartBtn" aria-label="Sluiten">&times;</button>
+    </div>
+
+    <div class="cart-drawer-body" id="cartItemsContainer">
+      <!-- Items dynamically injected -->
+    </div>
+
+    <div class="cart-drawer-footer">
+      <!-- Service Choice -->
+      <p
+        style="font-size: 0.8rem; color: var(--gold-primary); margin-bottom: 6px; font-weight: 600; text-transform: uppercase;">
+        Keuze bediening:</p>
+      <div class="order-type-selector">
+        <button type="button" class="order-type-btn active" data-type="Afhalen">🛍️ Afhalen</button>
+        <button type="button" class="order-type-btn" data-type="Ter plaatse eten">🍽️ Ter plaatse eten</button>
+      </div>
+
+      <div class="cart-summary-line">
+        <span>Totaalbedrag:</span>
+        <span id="cartTotalPrice">€ 0,00</span>
+      </div>
+
+      <!-- WhatsApp Order Link -->
+      <button class="btn-whatsapp-order" id="btnWhatsAppOrder">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+          <path
+            d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
+        </svg>
+        Plaats Bestelling via WhatsApp
+      </button>
+
+      <a href="tel:0644983884" class="btn-outline-gold dyn-phone-link"
+        style="width: 100%; justify-content: center; font-size: 0.88rem;">
+        Of bel ons direct: <span class="dyn-phone">06 4498 3884</span>
+      </a>
+    </div>
+  </aside>
+
+  <!-- ==========================================
+       ALLERGEN INFORMATION MODAL
+       ========================================== -->
+  <div class="allergen-modal-overlay" id="allergenModal" role="dialog" aria-modal="true">
+    <div class="allergen-card-dialog">
+      <h3>
+        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+          style="color: var(--gold-primary);">
+          <path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z" />
+          <line x1="12" y1="9" x2="12" y2="13" />
+          <line x1="12" y1="17" x2="12.01" y2="17" />
+        </svg>
+        Allergeneninformatie
+      </h3>
+
+      <div class="allergen-highlight-box">
+        Belangrijk bericht voor gasten met een allergie of intolerantie:
+      </div>
+
+      <p class="dyn-allergen-text">
+        Heeft u een allergie of dieetwens? Vraag altijd ons keukenpersoneel naar de ingrediënten en allergenen in onze
+        gerechten!
+      </p>
+
+      <p>
+        Onze gerechten kunnen gluten, melk/lactose, sesam, selderij, mosterd of andere allergenen bevatten. Omdat wij
+        dagelijks werken met verse producten, informeren onze koks u graag persoonlijk en zorgvuldig over de juiste
+        keuze voor uw gezondheid.
+      </p>
+
+      <div style="display:flex; justify-content:flex-end;">
+        <button class="btn-gold" id="closeAllergenBtn" type="button">Begrepen</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       SITE FOOTER
+       ========================================== -->
+  <footer class="site-footer" id="contact">
+    <div class="footer-container">
+
+      <!-- Brand & About -->
+      <div class="footer-brand">
+        <h2>Habibi DONER - Chicken Grill</h2>
+        <p>Dé specialist in authentieke DONER, malse gegerilde kip, verse durum en rijk gevulde kapsalons. 100% Halal
+          bereid met liefde en passie.</p>
+
+        <div style="display: flex; gap: 10px; align-items: center; margin-bottom: 14px;">
+          <img src="assets/images/halal-badge.jpg" alt="100% Halal"
+            style="width: 48px; height: 48px; border-radius: 50%; border: 1px solid var(--gold-primary);">
+          <div>
+            <span style="color: var(--gold-light); font-weight: 700; font-size: 0.9rem;">100% Halal
+              Gecertificeerd</span>
+            <p style="font-size: 0.78rem; color: var(--text-muted); margin: 0;">Altijd vers en rein bereid</p>
+          </div>
+        </div>
+
+        <p style="font-size: 0.85rem; color: var(--gold-light);">
+          <strong>Telefoon voor bestellingen & afhalen:</strong><br>
+          <a href="tel:0644983884" class="dyn-phone" style="font-size: 1.15rem; font-weight: 800; color: #fff;">06 4498
+            3884</a>
+        </p>
+      </div>
+
+      <!-- Opening Hours -->
+      <div class="footer-links-col">
+        <h4>Openingstijden</h4>
+        <ul class="footer-links-list" id="footerOpeningHoursList" style="font-size: 0.88rem;">
+          <li><span>Maandag:</span> <strong>11:00 - 23:00</strong></li>
+          <li><span>Dinsdag:</span> <strong>11:00 - 23:00</strong></li>
+          <li><span>Woensdag:</span> <strong>11:00 - 23:00</strong></li>
+          <li><span>Donderdag:</span> <strong>11:00 - 23:00</strong></li>
+          <li><span>Vrijdag:</span> <strong>11:00 - 00:00</strong></li>
+          <li><span>Zaterdag:</span> <strong>11:00 - 00:00</strong></li>
+          <li><span>Zondag:</span> <strong>12:00 - 23:00</strong></li>
+        </ul>
+      </div>
+
+      <!-- Quick Links -->
+      <div class="footer-links-col">
+        <h4>Snelle Links</h4>
+        <ul class="footer-links-list">
+          <li><a href="#specialiteiten">Populaire Specialiteiten</a></li>
+          <li><a href="#menu">Menukaart Overzicht</a></li>
+          <li><a href="#cat-broodjes">Broodjes & Durum</a></li>
+          <li><a href="#cat-kapsalon">Kapsalons</a></li>
+          <li><a href="#cat-kip">Gegerilde Kip</a></li>
+          <li><a href="#" class="allergen-trigger-btn">Allergenen Informatie</a></li>
+          <li><a href="admin.html" style="color: var(--gold-primary); font-weight: 600;">⚙️ Beheerder / Admin</a></li>
+        </ul>
+      </div>
+
+    </div>
+
+    <!-- Bottom Bar -->
+    <div class="footer-bottom-bar">
+      <div>
+        &copy; <span id="currentYear">2026</span> Habibi DONER - Chicken Grill. Alle rechten voorbehouden.
+      </div>
+      <div>
+        <a href="admin.html" class="footer-admin-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+          </svg>
+          Beheerder Portaal
+        </a>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/menu-data.js"></script>
+  <script src="assets/js/main.js"></script>
+  <script>
+    document.getElementById("currentYear").textContent = new Date().getFullYear();
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Beheerder Portaal | Habibi DONER - Chicken Grill</title>
+  <meta name="robots" content="noindex, nofollow">
+  
+  <link rel="icon" type="image/png" href="assets/images/logo.png">
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Cinzel:wght@700&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="assets/css/admin.css">
+</head>
+<body>
+
+  <!-- ==========================================
+       AUTHENTICATION / PIN OVERLAY
+       ========================================== -->
+  <div class="auth-overlay" id="adminAuthOverlay">
+    <div class="auth-box">
+      <img src="assets/images/logo.png" alt="Habibi DONER Logo">
+      <h2 style="color: var(--gold-light); margin-bottom: 6px; font-size: 1.4rem;">Beheerder Login</h2>
+      <p style="color: var(--text-muted); font-size: 0.88rem; margin-bottom: 20px;">
+        Voer uw beheerder pincode in om de website, menukaart en prijzen aan te passen.
+      </p>
+
+      <div style="margin-bottom: 16px;">
+        <input type="password" id="adminPinInput" class="form-control" placeholder="Pincode (Standaard: 1234)" style="text-align: center; font-size: 1.3rem; letter-spacing: 0.2em;" autofocus>
+      </div>
+
+      <p id="authErrorMsg" style="color: #ff7675; font-size: 0.85rem; margin-bottom: 16px; min-height: 20px;"></p>
+
+      <button type="button" class="btn-admin btn-admin-primary" id="btnAuthLogin" style="width: 100%; justify-content: center; padding: 12px;">
+        Inloggen in Beheerpaneel
+      </button>
+
+      <div style="margin-top: 20px;">
+        <a href="index.html" style="color: var(--text-muted); font-size: 0.82rem; text-decoration: underline;">
+          ← Terug naar website
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================
+       ADMIN HEADER
+       ========================================== -->
+  <header class="admin-header">
+    <div class="admin-brand">
+      <img src="assets/images/logo.png" alt="Logo">
+      <div>
+        <h2>Habibi DONER</h2>
+        <span>Beheerpaneel</span>
+      </div>
+    </div>
+
+    <div class="admin-header-actions">
+      <a href="index.html" target="_blank" class="btn-admin" title="Open de website in nieuw tabblad">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path>
+          <polyline points="15 3 21 3 21 9"></polyline>
+          <line x1="10" y1="14" x2="21" y2="3"></line>
+        </svg>
+        Bekijk Website
+      </a>
+      <button class="btn-admin btn-admin-danger" id="btnLogout" title="Uitloggen">
+        Uitloggen
+      </button>
+    </div>
+  </header>
+
+  <!-- ==========================================
+       MAIN CONTENT CONTAINER
+       ========================================== -->
+  <main class="admin-container">
+    
+    <!-- Navigation Tabs -->
+    <div class="admin-tabs" role="tablist">
+      <button class="tab-btn active" data-tab="tab-items" role="tab">🍽️ Gerechten & Prijzen</button>
+      <button class="tab-btn" data-tab="tab-promo" role="tab">📢 Reclames & Acties</button>
+      <button class="tab-btn" data-tab="tab-add" role="tab">➕ Nieuw Gerecht Toevoegen</button>
+      <button class="tab-btn" data-tab="tab-settings" role="tab">⚙️ Restaurant Gegevens & Allergenen</button>
+      <button class="tab-btn" data-tab="tab-backup" role="tab">💾 Backup & Herstel</button>
+    </div>
+
+    <!-- TAB 1: ITEMS & PRICES MANAGER -->
+    <section class="tab-pane active" id="tab-items" role="tabpanel">
+      <div class="admin-card">
+        <div class="admin-card-title">
+          <span>Gerechten Overzicht & Prijzen Aanpassen</span>
+          <span style="font-size: 0.85rem; color: var(--gold-accent);">Direct online bewerkbaar</span>
+        </div>
+        <p class="admin-card-subtitle">
+          Pas de prijzen, namen of tags van de gerechten direct aan. Klik op "✓ Opslaan" om wijzigingen direct live te zetten.
+        </p>
+
+        <!-- Filters -->
+        <div class="table-toolbar">
+          <div style="display:flex; gap: 12px; flex: 1; flex-wrap: wrap;">
+            <select id="filterCategorySelect" class="form-control" style="max-width: 240px;">
+              <option value="all">Alle categorieën</option>
+            </select>
+            <input type="text" id="adminSearchItemInput" class="form-control" placeholder="Zoek op naam..." style="max-width: 260px;">
+          </div>
+        </div>
+
+        <!-- Items Table -->
+        <div class="table-container">
+          <table class="admin-table">
+            <thead>
+              <tr>
+                <th style="width: 50px;">Nr</th>
+                <th>Naam Gerecht</th>
+                <th>Categorie</th>
+                <th style="width: 140px;">Prijs</th>
+                <th style="width: 150px;">Tag / Label</th>
+                <th style="width: 180px;">Acties</th>
+              </tr>
+            </thead>
+            <tbody id="adminItemsTableBody">
+              <!-- Rendered dynamically -->
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB: RECLAMES & ACTIES BANNER -->
+    <section class="tab-pane" id="tab-promo" role="tabpanel">
+      <div class="admin-card">
+        <div class="admin-card-title">
+          <span>📢 Reclame- & Actiebanner Beheren</span>
+          <span style="font-size: 0.85rem; color: var(--gold-accent);">Zichtbaar voor alle bezoekers</span>
+        </div>
+        <p class="admin-card-subtitle">
+          Plaats een opvallende reclame, dagaanbieding of speciale actie op de website. U kunt deze op elk gewenst moment in- of uitschakelen.
+        </p>
+
+        <!-- Toggle Active Status -->
+        <div style="background: rgba(230, 184, 92, 0.08); border: 1px solid var(--border-color); padding: 16px 20px; border-radius: 10px; margin-bottom: 24px; display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <strong style="color: var(--gold-light); font-size: 1.05rem; display: block;">Actie Inschakelen op Website</strong>
+            <span style="color: var(--text-muted); font-size: 0.85rem;">Wanneer ingeschakeld, verschijnt de actiebanner direct bovenaan de website.</span>
+          </div>
+          <label style="position: relative; display: inline-block; width: 56px; height: 30px; cursor: pointer;">
+            <input type="checkbox" id="promoActiveToggle" style="opacity: 0; width: 0; height: 0;">
+            <span class="slider-toggle" style="position: absolute; inset: 0; background-color: #333; border-radius: 34px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.2);"></span>
+          </label>
+        </div>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="promoBadgeInput">Actie Label / Badge</label>
+            <input type="text" id="promoBadgeInput" class="form-control" placeholder="bijv. 🔥 ACTIE VAN DE WEEK of 🎉 WEEKEND DEAL">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="promoStyleSelect">Thema / Kleurstijl</label>
+            <select id="promoStyleSelect" class="form-control">
+              <option value="gold">✨ Luxe Goud (Aanbevolen)</option>
+              <option value="fire">🔥 Vurig Rood (Opvallend)</option>
+              <option value="dark">🌑 Modern Zwart / Donker</option>
+            </select>
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="promoTitleInput">Titel van de Actie *</label>
+            <input type="text" id="promoTitleInput" class="form-control" placeholder="bijv. Hele Gegrilde Kip Menu met Rijst, Friet & Frisdrank!">
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="promoDescInput">Omschrijving / Wat krijgt de klant?</label>
+            <textarea id="promoDescInput" class="form-control" rows="2" placeholder="Omschrijf de inhoud van het actiemenu of de actie..."></textarea>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="promoPriceOldInput">Normale Prijs (optioneel doorgestreept)</label>
+            <input type="text" id="promoPriceOldInput" class="form-control" placeholder="bijv. € 22,50">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="promoPriceNewInput">Actieprijs *</label>
+            <input type="text" id="promoPriceNewInput" class="form-control" placeholder="bijv. Nu € 18,50 of 2e Halve Prijs!">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="promoValidityInput">Geldigheid & Voorwaarden</label>
+            <input type="text" id="promoValidityInput" class="form-control" placeholder="bijv. Geldig bij afhalen & ter plaatse eten">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="promoCtaInput">Knop Tekst</label>
+            <input type="text" id="promoCtaInput" class="form-control" placeholder="bijv. Direct Bestellen via WhatsApp">
+          </div>
+
+          <!-- Live Preview Box -->
+          <div class="form-group full-width" style="margin-top: 10px;">
+            <label class="form-label">Live Voorbeeld van de Banner</label>
+            <div id="adminPromoLivePreview" style="padding: 22px; border-radius: 12px; border: 1px dashed var(--gold-accent);">
+              <!-- Rendered via JS -->
+            </div>
+          </div>
+
+          <div class="form-group full-width" style="margin-top: 14px;">
+            <button type="button" class="btn-admin btn-admin-primary" id="btnSavePromo" style="padding: 12px 28px; font-size: 1rem;">
+              💾 Actie Opslaan & Direct Live Zetten
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 2: ADD NEW ITEM -->
+    <section class="tab-pane" id="tab-add" role="tabpanel">
+      <div class="admin-card">
+        <h3 class="admin-card-title">Nieuw Gerecht Toevoegen aan het Menu</h3>
+        <p class="admin-card-subtitle">Voeg eenvoudig een nieuw gerecht of drankje toe aan uw online menukaart.</p>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="newItemName">Naam van het gerecht *</label>
+            <input type="text" id="newItemName" class="form-control" placeholder="bijv. Broodje Yaprak Speciaal">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="newItemCategory">Categorie *</label>
+            <select id="newItemCategory" class="form-control">
+              <!-- Populated dynamically -->
+            </select>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="newItemPrice">Prijs (€) *</label>
+            <input type="number" step="0.25" min="0" id="newItemPrice" class="form-control" placeholder="9.50">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="newItemTag">Label / Tag (optioneel)</label>
+            <input type="text" id="newItemTag" class="form-control" placeholder="bijv. Populair, Vega, Nieuw">
+          </div>
+
+          <div class="form-group full-width" style="margin-top: 10px;">
+            <button type="button" class="btn-admin btn-admin-primary" id="btnAddNewItem" style="padding: 12px 24px;">
+              ➕ Gerecht Toevoegen aan Menu
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 3: RESTAURANT SETTINGS & ALLERGENS -->
+    <section class="tab-pane" id="tab-settings" role="tabpanel">
+      <div class="admin-card">
+        <h3 class="admin-card-title">Restaurant Informatie & Contact</h3>
+        <p class="admin-card-subtitle">Pas uw telefoonnummer, slogan en de verplichte allergenenwaarschuwing aan.</p>
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label class="form-label" for="infoName">Restaurant Naam</label>
+            <input type="text" id="infoName" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="infoSlogan">Slogan / Tagline</label>
+            <input type="text" id="infoSlogan" class="form-control">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="infoPhone">Telefoonnummer (Zichtbaar & Bellen)</label>
+            <input type="text" id="infoPhone" class="form-control" placeholder="06 4498 3884">
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="infoWhatsapp">WhatsApp Nummer voor Bestellingen</label>
+            <input type="text" id="infoWhatsapp" class="form-control" placeholder="31644983884">
+          </div>
+
+          <div class="form-group full-width">
+            <label class="form-label" for="infoAllergen">Allergenen & Dieetwaarschuwing Tekst</label>
+            <textarea id="infoAllergen" class="form-control" rows="3"></textarea>
+            <span style="font-size: 0.78rem; color: var(--text-muted); margin-top: 4px;">
+              Deze waarschuwing wordt getoond in de bovenbalk, in de allergenen popup en bij het menu.
+            </span>
+          </div>
+
+          <div class="form-group full-width" style="margin-top: 10px;">
+            <button type="button" class="btn-admin btn-admin-primary" id="btnSaveInfo" style="padding: 12px 24px;">
+              💾 Instellingen Opslaan
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Opening Hours Management Card -->
+      <div class="admin-card" style="margin-top: 24px;">
+        <div class="admin-card-title">
+          <span>🕒 Openingstijden Aanpassen</span>
+          <span style="font-size: 0.85rem; color: var(--gold-accent);">Direct live op de website</span>
+        </div>
+        <p class="admin-card-subtitle">
+          Pas de openingstijden per dag aan (bijv. "11:00 - 23:00", "11:00 - 00:00" of "Gesloten").
+        </p>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 14px; margin-bottom: 20px;" id="adminOpeningHoursContainer">
+          <!-- Dynamically populated by admin.js -->
+        </div>
+
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; border-top:1px solid rgba(255,255,255,0.06); padding-top:16px;">
+          <button type="button" class="btn-admin" id="btnPresetDefaultHours">
+            ↺ Standaard Tijden Herstellen
+          </button>
+          <button type="button" class="btn-admin btn-admin-primary" id="btnSaveOpeningHours" style="padding: 12px 24px;">
+            💾 Openingstijden Opslaan & Live Zetten
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAB 4: BACKUP, RESTORE & SECURITY -->
+    <section class="tab-pane" id="tab-backup" role="tabpanel">
+      <div class="admin-card">
+        <h3 class="admin-card-title">Veiligheid & Pincode</h3>
+        <p class="admin-card-subtitle">Wijzig de pincode waarmee de beheerder inlogt.</p>
+
+        <div style="display:flex; gap:12px; max-width:400px;">
+          <input type="password" id="inputNewPin" class="form-control" placeholder="Nieuwe 4-cijferige pincode">
+          <button type="button" class="btn-admin btn-admin-primary" id="btnSaveNewPin">Opslaan</button>
+        </div>
+      </div>
+
+      <div class="admin-card">
+        <h3 class="admin-card-title">Backup Maken & Importeren</h3>
+        <p class="admin-card-subtitle">
+          Exporteer alle gerechten, prijzen en instellingen naar een bestand op uw computer, of zet een eerdere backup terug.
+        </p>
+
+        <div style="display: flex; gap: 14px; flex-wrap: wrap;">
+          <button type="button" class="btn-admin btn-admin-primary" id="btnExportBackup">
+            📥 Exporteer Backup (.JSON)
+          </button>
+          
+          <label class="btn-admin" style="cursor: pointer;">
+            📤 Importeer Backup (.JSON)
+            <input type="file" id="fileImportBackup" accept=".json" style="display: none;">
+          </label>
+        </div>
+      </div>
+
+      <div class="admin-card" style="border-color: rgba(231, 76, 60, 0.3);">
+        <h3 class="admin-card-title" style="color: #ff7675;">Originele Menukaart Herstellen</h3>
+        <p class="admin-card-subtitle">
+          Wilt u alle prijzen en gerechten weer exact terugzetten zoals op de originele menuborden van de zaak?
+        </p>
+        <button type="button" class="btn-admin btn-admin-danger" id="btnResetDefaults">
+          ⚠️ Herstel naar Fabrieksinstellingen
+        </button>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="assets/js/menu-data.js"></script>
+  <script src="assets/js/admin.js"></script>
+</body>
+</html>
