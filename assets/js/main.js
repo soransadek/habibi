@@ -52,9 +52,13 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
 
-    // Close on navigation link click
+    // Close on navigation link click and handle category accordion opening
     mobileDropdown.querySelectorAll("a").forEach(link => {
       link.addEventListener("click", () => {
+        const catTarget = link.getAttribute("data-open-cat");
+        if (catTarget) {
+          selectCategory(catTarget);
+        }
         closeMobileMenu();
       });
     });
@@ -216,6 +220,13 @@ document.addEventListener("DOMContentLoaded", () => {
   function selectCategory(cat) {
     activeCategory = cat;
 
+    if (cat !== 'all') {
+      openCategories.add(cat);
+    } else {
+      // open all if "all" is picked
+      categories.forEach(c => openCategories.add(c.id));
+    }
+
     // Sync pills
     if (categoryPillsContainer) {
       categoryPillsContainer.querySelectorAll(".cat-pill").forEach(p => {
@@ -236,16 +247,35 @@ document.addEventListener("DOMContentLoaded", () => {
     renderMenu();
 
     if (cat !== 'all') {
-      const targetSection = document.getElementById(`cat-${cat}`);
-      if (targetSection) {
-        targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }
+      setTimeout(() => {
+        const targetSection = document.getElementById(`cat-${cat}`);
+        if (targetSection) {
+          targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 50);
     }
   }
 
   // ==========================================
-  // MENU RENDER
+  // MENU RENDER (ACCORDION SUPPORT FOR MOBILE & DESKTOP)
   // ==========================================
+  // Track open accordion state per category (default: first open, or if category chosen open that)
+  const openCategories = new Set();
+  let initialAccordionSet = false;
+
+  const CATEGORY_EMOJIS = {
+    broodjes: "🥪",
+    durum: "🌯",
+    kapsalon: "🍟",
+    kip: "🍗",
+    schotels: "🍽️",
+    box: "📦",
+    pizza: "🍕",
+    soep: "🍲",
+    extra: "🥫",
+    dranken: "🥤"
+  };
+
   function renderMenu() {
     if (!menuContainer) return;
     items = MenuStore.getItems();
@@ -280,45 +310,74 @@ document.addEventListener("DOMContentLoaded", () => {
       grouped[item.category].push(item);
     });
 
+    // Determine initial accordion state
+    if (!initialAccordionSet) {
+      // By default open all or open the first category
+      if (categories.length > 0) {
+        openCategories.add(categories[0].id);
+      }
+      initialAccordionSet = true;
+    }
+
+    // If searching, open all matching categories
+    const isSearching = searchQuery.trim() !== "";
+    if (isSearching) {
+      categories.forEach(c => {
+        if (grouped[c.id] && grouped[c.id].length > 0) openCategories.add(c.id);
+      });
+    } else if (activeCategory !== "all") {
+      openCategories.add(activeCategory);
+    }
+
     let html = "";
     categories.forEach(cat => {
       const catItems = grouped[cat.id];
       if (!catItems || catItems.length === 0) return;
 
+      const isOpen = openCategories.has(cat.id);
+      const emoji = CATEGORY_EMOJIS[cat.id] || "🍽️";
+
       html += `
-        <section class="category-block" id="cat-${cat.id}">
-          <div class="category-title-banner">
-            <div class="cat-icon-badge">
-              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/>
+        <section class="category-block ${isOpen ? 'open' : 'collapsed'}" id="cat-${cat.id}" data-category-id="${cat.id}">
+          <button type="button" class="category-accordion-btn" aria-expanded="${isOpen}">
+            <div class="category-accordion-left">
+              <span class="category-emoji-badge">${emoji}</span>
+              <div class="cat-heading-text">
+                <h3>${cat.name}</h3>
+                <p>${cat.subtitle || 'Vers bereid volgens traditioneel recept'}</p>
+              </div>
+            </div>
+            <div class="category-accordion-right">
+              <span class="category-item-count">${catItems.length} items</span>
+              <svg class="category-chevron-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </div>
-            <div class="cat-heading-text">
-              <h3>${cat.name}</h3>
-              <p>${cat.subtitle || 'Vers bereid volgens traditioneel recept'}</p>
-            </div>
-          </div>
-          <div class="dishes-grid">
-            ${catItems.map(item => `
-              <div class="dish-card" data-id="${item.id}">
-                <div class="dish-header">
-                  <h4 class="dish-name">${escapeHtml(item.name)}</h4>
-                  <span class="dish-price">${MenuStore.formatPrice(item.price)}</span>
-                </div>
-                <div class="dish-footer">
-                  <div>
-                    ${item.tag ? `<span class="dish-tag ${item.tag.toLowerCase().includes('vega') ? 'vega' : ''}">${escapeHtml(item.tag)}</span>` : `<span style="font-size:0.75rem; color:var(--text-muted);">100% Halal</span>`}
+          </button>
+
+          <div class="category-collapse-content" style="${isOpen ? '' : 'display: none;'}">
+            <div class="dishes-grid">
+              ${catItems.map(item => `
+                <div class="dish-card" data-id="${item.id}">
+                  <div class="dish-header">
+                    <h4 class="dish-name">${escapeHtml(item.name)}</h4>
+                    <span class="dish-price">${MenuStore.formatPrice(item.price)}</span>
                   </div>
-                  <button class="btn-add-item" data-add="${item.id}" title="Voeg toe aan bestelling">
-                    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-                      <line x1="12" y1="5" x2="12" y2="19"></line>
-                      <line x1="5" y1="12" x2="19" y2="12"></line>
-                    </svg>
-                    Bestel
-                  </button>
+                  <div class="dish-footer">
+                    <div>
+                      ${item.tag ? `<span class="dish-tag ${item.tag.toLowerCase().includes('vega') ? 'vega' : ''}">${escapeHtml(item.tag)}</span>` : `<span style="font-size:0.75rem; color:var(--text-muted);">100% Halal</span>`}
+                    </div>
+                    <button class="btn-add-item" data-add="${item.id}" title="Voeg toe aan bestelling">
+                      <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <line x1="12" y1="5" x2="12" y2="19"></line>
+                        <line x1="5" y1="12" x2="19" y2="12"></line>
+                      </svg>
+                      Bestel
+                    </button>
+                  </div>
                 </div>
-              </div>
-            `).join("")}
+              `).join("")}
+            </div>
           </div>
         </section>
       `;
@@ -326,9 +385,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
     menuContainer.innerHTML = html;
 
+    // Attach Accordion Toggle Click Handlers
+    menuContainer.querySelectorAll(".category-accordion-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const block = btn.closest(".category-block");
+        const catId = block.getAttribute("data-category-id");
+        const content = block.querySelector(".category-collapse-content");
+        const isCurrentlyOpen = block.classList.contains("open");
+
+        if (isCurrentlyOpen) {
+          block.classList.remove("open");
+          block.classList.add("collapsed");
+          btn.setAttribute("aria-expanded", "false");
+          content.style.display = "none";
+          openCategories.delete(catId);
+        } else {
+          block.classList.add("open");
+          block.classList.remove("collapsed");
+          btn.setAttribute("aria-expanded", "true");
+          content.style.display = "block";
+          openCategories.add(catId);
+        }
+      });
+    });
+
     // Attach Add to cart buttons
     menuContainer.querySelectorAll(".btn-add-item").forEach(btn => {
       btn.addEventListener("click", (e) => {
+        e.stopPropagation();
         const id = btn.getAttribute("data-add");
         addToCart(id);
       });

@@ -1056,7 +1056,7 @@ button, input, select {
 }
 
 /* ========================================================
-   MENU ITEMS & CATEGORY SECTIONS
+   MENU ITEMS & CATEGORY SECTIONS (ACCORDION STYLING)
    ======================================================== */
 .menu-main-content {
   max-width: 1320px;
@@ -1064,37 +1064,91 @@ button, input, select {
   padding: 0 20px 80px;
 }
 .category-block {
-  margin-bottom: 50px;
+  margin-bottom: 24px;
   scroll-margin-top: 170px;
+  background: rgba(18, 18, 22, 0.6);
+  border: 1px solid var(--border-color);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
 }
-.category-title-banner {
+.category-block.open {
+  border-color: var(--gold-primary);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4), var(--shadow-gold);
+}
+.category-accordion-btn {
+  width: 100%;
+  background: var(--bg-card);
+  padding: 18px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  cursor: pointer;
+  border: none;
+  text-align: left;
+  transition: var(--transition);
+}
+.category-accordion-btn:hover {
+  background: var(--bg-card-hover);
+}
+.category-block.open .category-accordion-btn {
+  border-bottom: 1px solid rgba(230, 184, 92, 0.25);
+  background: linear-gradient(90deg, rgba(230, 184, 92, 0.08) 0%, rgba(18, 18, 22, 0.95) 100%);
+}
+.category-accordion-left {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 22px;
-  padding-bottom: 12px;
-  border-bottom: 1px solid var(--border-color);
 }
-.cat-icon-badge {
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-sm);
-  background: rgba(230, 184, 92, 0.12);
-  border: 1px solid var(--gold-primary);
+.category-emoji-badge {
+  font-size: 1.8rem;
+  line-height: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: rgba(230, 184, 92, 0.1);
+  border: 1px solid var(--gold-primary);
+  border-radius: var(--radius-md);
+  flex-shrink: 0;
+}
+.category-accordion-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+.category-item-count {
+  font-size: 0.8rem;
+  color: var(--gold-light);
+  background: rgba(230, 184, 92, 0.15);
+  border: 1px solid rgba(230, 184, 92, 0.3);
+  padding: 4px 10px;
+  border-radius: var(--radius-full);
+  font-weight: 600;
+}
+.category-chevron-icon {
   color: var(--gold-primary);
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.category-block.open .category-chevron-icon {
+  transform: rotate(180deg);
+}
+.category-collapse-content {
+  padding: 24px;
 }
 .cat-heading-text h3 {
   font-family: var(--font-heading);
-  font-size: 1.5rem;
+  font-size: 1.35rem;
   color: var(--gold-light);
   line-height: 1.2;
 }
 .cat-heading-text p {
   font-size: 0.85rem;
   color: var(--text-muted);
+  margin-top: 2px;
 }
 
 /* Dish Grid */
@@ -1707,6 +1761,36 @@ button, input, select {
   .notice-inner {
     text-align: center;
     justify-content: center;
+  }
+
+  /* Category Accordion on Mobile */
+  .category-accordion-btn {
+    padding: 14px 16px;
+    gap: 12px;
+  }
+  .category-emoji-badge {
+    width: 40px;
+    height: 40px;
+    font-size: 1.45rem;
+    border-radius: var(--radius-sm);
+  }
+  .cat-heading-text h3 {
+    font-size: 1.15rem;
+  }
+  .cat-heading-text p {
+    font-size: 0.78rem;
+    line-height: 1.3;
+  }
+  .category-item-count {
+    font-size: 0.72rem;
+    padding: 2px 7px;
+  }
+  .category-collapse-content {
+    padding: 14px 12px;
+  }
+  .category-block {
+    margin-bottom: 14px;
+    border-radius: var(--radius-md);
   }
 
   .screens-grid {
