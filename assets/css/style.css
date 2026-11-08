@@ -1024,17 +1024,31 @@ button, input, select {
   pointer-events: none;
 }
 
-/* Category Pills Bar (Horizontal Scrollable) */
+/* Category Pills Bar (Horizontal Scrollable with visible scrollbar) */
 .category-pills-bar {
   display: flex;
   align-items: center;
   gap: 8px;
   overflow-x: auto;
-  padding-bottom: 4px;
-  scrollbar-width: none;
+  padding-bottom: 10px;
+  margin-bottom: 4px;
+  scrollbar-width: thin;
+  scrollbar-color: var(--gold-dark) rgba(255, 255, 255, 0.05);
 }
 .category-pills-bar::-webkit-scrollbar {
-  display: none;
+  height: 6px;
+  display: block;
+}
+.category-pills-bar::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.04);
+  border-radius: var(--radius-full);
+}
+.category-pills-bar::-webkit-scrollbar-thumb {
+  background: var(--gold-dark);
+  border-radius: var(--radius-full);
+}
+.category-pills-bar::-webkit-scrollbar-thumb:hover {
+  background: var(--gold-primary);
 }
 .cat-pill {
   background: var(--bg-secondary);
