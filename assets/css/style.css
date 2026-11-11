@@ -1438,6 +1438,84 @@ button, input, select {
   color: var(--gold-light);
 }
 
+/* Dine-in reservation box in cart drawer */
+.dinein-reservation-box {
+  background: rgba(230, 184, 92, 0.08);
+  border: 1px solid rgba(230, 184, 92, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  margin-bottom: 14px;
+  animation: fadeInReservation 0.25s ease;
+}
+@keyframes fadeInReservation {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.reservation-box-title {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.reservation-box-title svg {
+  color: var(--gold-primary);
+}
+.reservation-fields-row {
+  display: flex;
+  gap: 8px;
+}
+.reservation-field {
+  flex: 1.6;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.reservation-field-guests {
+  flex: 1;
+}
+.reservation-field label {
+  font-size: 0.72rem;
+  color: var(--text-muted);
+  font-weight: 600;
+}
+.reservation-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+.reservation-input-wrap svg {
+  position: absolute;
+  left: 10px;
+  color: var(--gold-primary);
+  pointer-events: none;
+}
+.reservation-select {
+  width: 100%;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  color: #fff;
+  font-size: 0.82rem;
+  padding: 8px 10px 8px 30px;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  outline: none;
+  transition: var(--transition);
+}
+.reservation-select:focus {
+  border-color: var(--gold-primary);
+  box-shadow: 0 0 10px var(--gold-glow);
+}
+.reservation-select option {
+  background: #14141a;
+  color: #fff;
+  padding: 8px;
+}
+
 /* WhatsApp Order Button */
 .btn-whatsapp-order {
   width: 100%;

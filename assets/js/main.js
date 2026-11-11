@@ -539,11 +539,52 @@ document.addEventListener("DOMContentLoaded", () => {
   if (cartDrawerOverlay) cartDrawerOverlay.addEventListener("click", closeCart);
 
   // Order type selection (Afhalen / Ter plaatse eten)
+  const dineInReservationBox = document.getElementById("dineInReservationBox");
+  const reservationTimeSelect = document.getElementById("reservationTimeSelect");
+  const reservationGuestsSelect = document.getElementById("reservationGuestsSelect");
+
+  function populateReservationTimes() {
+    if (!reservationTimeSelect) return;
+    const now = new Date();
+    const currentHour = now.getHours();
+    const currentMin = now.getMinutes();
+
+    let options = `<option value="Z.s.m. (binnen 20-30 min)">⚡ Z.s.m. (20-30 min)</option>`;
+
+    // Generate timeslots from 11:00 to 23:30 at 15-minute intervals
+    for (let h = 11; h <= 23; h++) {
+      for (let m = 0; m < 60; m += 15) {
+        // If today, only show future timeslots (at least 15 min from now)
+        const slotMinutes = h * 60 + m;
+        const nowMinutes = currentHour * 60 + currentMin;
+        const timeFormatted = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} uur`;
+        
+        if (slotMinutes > nowMinutes + 10) {
+          options += `<option value="Vandaag om ${timeFormatted}">Vandaag om ${timeFormatted}</option>`;
+        } else {
+          // Also allow choosing for later if evening has passed, or indicate tomorrow
+          options += `<option value="${timeFormatted}">${timeFormatted}</option>`;
+        }
+      }
+    }
+    reservationTimeSelect.innerHTML = options;
+  }
+  populateReservationTimes();
+
   orderTypeBtns.forEach(btn => {
     btn.addEventListener("click", () => {
       orderTypeBtns.forEach(b => b.classList.remove("active"));
       btn.classList.add("active");
       orderType = btn.getAttribute("data-type") || "Afhalen";
+
+      if (dineInReservationBox) {
+        if (orderType === "Ter plaatse eten") {
+          dineInReservationBox.style.display = "block";
+          populateReservationTimes();
+        } else {
+          dineInReservationBox.style.display = "none";
+        }
+      }
     });
   });
 
@@ -559,13 +600,26 @@ document.addEventListener("DOMContentLoaded", () => {
       
       let msg = `*BESTELLING BIJ HABIBI DONER - CHICKEN GRILL*\n`;
       msg += `Type: *${orderType}*\n`;
+
+      if (orderType === "Ter plaatse eten") {
+        const reservedTime = reservationTimeSelect ? reservationTimeSelect.value : "Z.s.m.";
+        const guestCount = reservationGuestsSelect ? reservationGuestsSelect.value : "2 personen";
+        msg += `🕒 *Gewenst tijdstip:* ${reservedTime}\n`;
+        msg += `👥 *Aantal personen:* ${guestCount}\n`;
+      }
+
       msg += `--------------------------------\n`;
       cart.forEach(item => {
         msg += `• ${item.quantity}x ${item.name} (${MenuStore.formatPrice(item.price * item.quantity)})\n`;
       });
       msg += `--------------------------------\n`;
       msg += `*Totaalbedrag:* ${MenuStore.formatPrice(totalPrice)}\n\n`;
-      msg += `_Graag bevestigen en eventuele sauzen / opmerkingen doorgeven. Dank u wel!_`;
+
+      if (orderType === "Ter plaatse eten") {
+        msg += `_Graag een tafel voor ons reserveren en de bestelling voorbereiden. Eventuele sauzen / opmerkingen geven we hieronder door!_`;
+      } else {
+        msg += `_Graag bevestigen en eventuele sauzen / opmerkingen doorgeven. Dank u wel!_`;
+      }
 
       const encoded = encodeURIComponent(msg);
       const cleanPhone = (info.whatsapp || "31644983884").replace(/\D/g, "");
