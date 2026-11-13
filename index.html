@@ -540,18 +540,18 @@
         <button type="button" class="order-type-btn" data-type="Ter plaatse eten">🍽️ Ter plaatse eten</button>
       </div>
 
-      <!-- Dine-in reservation time & guest count selector (visible when 'Ter plaatse eten' is selected) -->
+      <!-- Dine-in time selector (visible when 'Ter plaatse eten' is selected) -->
       <div class="dinein-reservation-box" id="dineInReservationBox" style="display: none;">
         <div class="reservation-box-title">
           <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
             <circle cx="12" cy="12" r="10"></circle>
             <polyline points="12 6 12 12 16 14"></polyline>
           </svg>
-          <span>Tafel reservering & tijdstip:</span>
+          <span>Tijdstip ter plaatse eten (tot max 21:45 uur):</span>
         </div>
         <div class="reservation-fields-row">
-          <div class="reservation-field">
-            <label for="reservationTimeSelect">Gewenste tijd:</label>
+          <div class="reservation-field" style="width: 100%;">
+            <label for="reservationTimeSelect">Kies gewenst tijdstip:</label>
             <div class="reservation-input-wrap">
               <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <circle cx="12" cy="12" r="10"></circle>
@@ -559,27 +559,7 @@
               </svg>
               <select id="reservationTimeSelect" class="reservation-select">
                 <option value="Z.s.m. (binnen 20-30 min)">⚡ Z.s.m. (20-30 min)</option>
-                <!-- Populated dynamically with today's timeslots -->
-              </select>
-            </div>
-          </div>
-          <div class="reservation-field reservation-field-guests">
-            <label for="reservationGuestsSelect">Personen:</label>
-            <div class="reservation-input-wrap">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                <circle cx="9" cy="7" r="4"></circle>
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
-                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
-              </svg>
-              <select id="reservationGuestsSelect" class="reservation-select">
-                <option value="1 persoon">1 pers.</option>
-                <option value="2 personen" selected>2 pers.</option>
-                <option value="3 personen">3 pers.</option>
-                <option value="4 personen">4 pers.</option>
-                <option value="5 personen">5 pers.</option>
-                <option value="6 personen">6 pers.</option>
-                <option value="7+ personen">7+ pers.</option>
+                <!-- Populated dynamically up to 21:45 uur -->
               </select>
             </div>
           </div>

@@ -160,6 +160,7 @@ const STORAGE_KEYS = {
   CATEGORIES: "habibi_menu_categories",
   ITEMS: "habibi_menu_items",
   PROMO: "habibi_promo_banner",
+  SPECIALTIES: "habibi_specialties_active",
   AUTH: "habibi_admin_auth"
 };
 
@@ -202,6 +203,19 @@ const MenuStore = {
     localStorage.setItem(STORAGE_KEYS.PROMO, JSON.stringify(promo));
   },
 
+  getSpecialtiesActive() {
+    try {
+      const stored = localStorage.getItem(STORAGE_KEYS.SPECIALTIES);
+      return stored !== null ? stored === "true" : true;
+    } catch (e) {
+      return true;
+    }
+  },
+
+  saveSpecialtiesActive(isActive) {
+    localStorage.setItem(STORAGE_KEYS.SPECIALTIES, String(isActive));
+  },
+
   getCategories() {
     try {
       const stored = localStorage.getItem(STORAGE_KEYS.CATEGORIES);
@@ -238,12 +252,14 @@ const MenuStore = {
     localStorage.removeItem(STORAGE_KEYS.CATEGORIES);
     localStorage.removeItem(STORAGE_KEYS.ITEMS);
     localStorage.removeItem(STORAGE_KEYS.PROMO);
+    localStorage.removeItem(STORAGE_KEYS.SPECIALTIES);
   },
 
   exportJSON() {
     const data = {
       restaurantInfo: this.getRestaurantInfo(),
       promoBanner: this.getPromoBanner(),
+      specialtiesActive: this.getSpecialtiesActive(),
       categories: this.getCategories(),
       items: this.getItems(),
       exportedAt: new Date().toISOString()
@@ -256,6 +272,7 @@ const MenuStore = {
       const parsed = JSON.parse(jsonString);
       if (parsed.restaurantInfo) this.saveRestaurantInfo(parsed.restaurantInfo);
       if (parsed.promoBanner) this.savePromoBanner(parsed.promoBanner);
+      if (parsed.specialtiesActive !== undefined) this.saveSpecialtiesActive(parsed.specialtiesActive);
       if (parsed.categories) this.saveCategories(parsed.categories);
       if (parsed.items) this.saveItems(parsed.items);
       return true;

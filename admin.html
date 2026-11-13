@@ -81,7 +81,7 @@
     <!-- Navigation Tabs -->
     <div class="admin-tabs" role="tablist">
       <button class="tab-btn active" data-tab="tab-items" role="tab">🍽️ Gerechten & Prijzen</button>
-      <button class="tab-btn" data-tab="tab-promo" role="tab">📢 Reclames & Acties</button>
+      <button class="tab-btn" data-tab="tab-promo" role="tab">📢 Reclames & Specialiteiten</button>
       <button class="tab-btn" data-tab="tab-add" role="tab">➕ Nieuw Gerecht Toevoegen</button>
       <button class="tab-btn" data-tab="tab-settings" role="tab">⚙️ Restaurant Gegevens & Allergenen</button>
       <button class="tab-btn" data-tab="tab-backup" role="tab">💾 Backup & Herstel</button>
@@ -129,8 +129,35 @@
       </div>
     </section>
 
-    <!-- TAB: RECLAMES & ACTIES BANNER -->
+    <!-- TAB: RECLAMES & SPECIALITEITEN -->
     <section class="tab-pane" id="tab-promo" role="tabpanel">
+      <!-- Specialiteiten Showcase Toggle Card -->
+      <div class="admin-card" style="margin-bottom: 24px;">
+        <div class="admin-card-title">
+          <span>⭐ "Onze Meest Geliefde Specialiteiten" Sectie</span>
+          <span style="font-size: 0.85rem; color: var(--gold-accent);">Zichtbaarheid op homepage</span>
+        </div>
+        <p class="admin-card-subtitle">
+          Schakel het blok "Onze Meest Geliefde Specialiteiten" (met de grote aanbevelingen & foto's) in of uit op de homepage.
+        </p>
+
+        <div style="background: rgba(230, 184, 92, 0.08); border: 1px solid var(--border-color); padding: 16px 20px; border-radius: 10px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 14px;">
+          <div>
+            <strong style="color: var(--gold-light); font-size: 1.05rem; display: block;">Specialiteiten Blok Tonen op Website</strong>
+            <span style="color: var(--text-muted); font-size: 0.85rem;">Wanneer uitgeschakeld, wordt deze hele sectie verborgen op de website.</span>
+          </div>
+          <div style="display: flex; align-items: center; gap: 14px;">
+            <label style="position: relative; display: inline-block; width: 56px; height: 30px; cursor: pointer;">
+              <input type="checkbox" id="specialtiesActiveToggle" style="opacity: 0; width: 0; height: 0;">
+              <span class="slider-toggle" style="position: absolute; inset: 0; background-color: #333; border-radius: 34px; transition: 0.3s; border: 1px solid rgba(255,255,255,0.2);"></span>
+            </label>
+            <button type="button" class="btn-admin btn-admin-primary" id="btnSaveSpecialtiesToggle" style="padding: 8px 18px;">
+              💾 Opslaan
+            </button>
+          </div>
+        </div>
+      </div>
+
       <div class="admin-card">
         <div class="admin-card-title">
           <span>📢 Reclame- & Actiebanner Beheren</span>

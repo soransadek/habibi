@@ -52,6 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Admin Panel Setup
   function initAdminPanel() {
     setupTabs();
+    loadSpecialtiesToggleForm();
     loadPromoBannerForm();
     loadRestaurantInfoForm();
     loadCategoriesDropdown();
@@ -62,6 +63,28 @@ document.addEventListener("DOMContentLoaded", () => {
 
   if (isAuthenticated) {
     initAdminPanel();
+  }
+
+  // ==========================================
+  // SPECIALTIES TOGGLE
+  // ==========================================
+  function loadSpecialtiesToggleForm() {
+    const specialtiesToggle = document.getElementById("specialtiesActiveToggle");
+    const saveSpecialtiesBtn = document.getElementById("btnSaveSpecialtiesToggle");
+
+    if (specialtiesToggle) {
+      specialtiesToggle.checked = MenuStore.getSpecialtiesActive();
+    }
+
+    if (saveSpecialtiesBtn && specialtiesToggle) {
+      saveSpecialtiesBtn.onclick = () => {
+        const isChecked = specialtiesToggle.checked;
+        MenuStore.saveSpecialtiesActive(isChecked);
+        showAdminToast(isChecked 
+          ? "Specialiteiten blok ingeschakeld op de website!" 
+          : "Specialiteiten blok uitgeschakeld op de website!");
+      };
+    }
   }
 
   // ==========================================

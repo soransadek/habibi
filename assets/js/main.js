@@ -181,6 +181,32 @@ document.addEventListener("DOMContentLoaded", () => {
   renderPromoBanner();
 
   // ==========================================
+  // SPECIALTIES SECTION VISIBILITY SYNC
+  // ==========================================
+  function syncSpecialtiesVisibility() {
+    const isSpecialtiesActive = MenuStore.getSpecialtiesActive();
+    const specialtiesSection = document.getElementById("specialiteiten");
+    if (specialtiesSection) {
+      if (isSpecialtiesActive) {
+        specialtiesSection.style.display = "";
+      } else {
+        specialtiesSection.style.display = "none";
+      }
+    }
+
+    // Hide or show links in navigation that point to #specialiteiten
+    document.querySelectorAll("a[href='#specialiteiten']").forEach(link => {
+      const parentLi = link.closest("li");
+      if (parentLi) {
+        parentLi.style.display = isSpecialtiesActive ? "" : "none";
+      } else {
+        link.style.display = isSpecialtiesActive ? "" : "none";
+      }
+    });
+  }
+  syncSpecialtiesVisibility();
+
+  // ==========================================
   // CATEGORY PILLS & DROPDOWN RENDER
   // ==========================================
   function renderCategoryPills() {
@@ -541,7 +567,6 @@ document.addEventListener("DOMContentLoaded", () => {
   // Order type selection (Afhalen / Ter plaatse eten)
   const dineInReservationBox = document.getElementById("dineInReservationBox");
   const reservationTimeSelect = document.getElementById("reservationTimeSelect");
-  const reservationGuestsSelect = document.getElementById("reservationGuestsSelect");
 
   function populateReservationTimes() {
     if (!reservationTimeSelect) return;
@@ -551,10 +576,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
     let options = `<option value="Z.s.m. (binnen 20-30 min)">⚡ Z.s.m. (20-30 min)</option>`;
 
-    // Generate timeslots from 11:00 to 23:30 at 15-minute intervals
-    for (let h = 11; h <= 23; h++) {
+    // Generate timeslots from 11:00 up to max 21:45 uur at 15-minute intervals
+    const maxHour = 21;
+    const maxMinute = 45;
+
+    for (let h = 11; h <= maxHour; h++) {
       for (let m = 0; m < 60; m += 15) {
-        // If today, only show future timeslots (at least 15 min from now)
+        if (h === maxHour && m > maxMinute) break;
+
         const slotMinutes = h * 60 + m;
         const nowMinutes = currentHour * 60 + currentMin;
         const timeFormatted = `${String(h).padStart(2, '0')}:${String(m).padStart(2, '0')} uur`;
@@ -562,7 +591,7 @@ document.addEventListener("DOMContentLoaded", () => {
         if (slotMinutes > nowMinutes + 10) {
           options += `<option value="Vandaag om ${timeFormatted}">Vandaag om ${timeFormatted}</option>`;
         } else {
-          // Also allow choosing for later if evening has passed, or indicate tomorrow
+          // If earlier today, allow selecting for reference or upcoming days
           options += `<option value="${timeFormatted}">${timeFormatted}</option>`;
         }
       }
@@ -603,9 +632,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
       if (orderType === "Ter plaatse eten") {
         const reservedTime = reservationTimeSelect ? reservationTimeSelect.value : "Z.s.m.";
-        const guestCount = reservationGuestsSelect ? reservationGuestsSelect.value : "2 personen";
-        msg += `🕒 *Gewenst tijdstip:* ${reservedTime}\n`;
-        msg += `👥 *Aantal personen:* ${guestCount}\n`;
+        msg += `🕒 *Tijdstip ter plaatse eten:* ${reservedTime}\n`;
       }
 
       msg += `--------------------------------\n`;
@@ -616,7 +643,7 @@ document.addEventListener("DOMContentLoaded", () => {
       msg += `*Totaalbedrag:* ${MenuStore.formatPrice(totalPrice)}\n\n`;
 
       if (orderType === "Ter plaatse eten") {
-        msg += `_Graag een tafel voor ons reserveren en de bestelling voorbereiden. Eventuele sauzen / opmerkingen geven we hieronder door!_`;
+        msg += `_Graag klaarmaken voor ter plaatse eten. Eventuele sauzen / opmerkingen geven we hieronder door!_`;
       } else {
         msg += `_Graag bevestigen en eventuele sauzen / opmerkingen doorgeven. Dank u wel!_`;
       }
